@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://cxf.apache.org/jaxws 
+	http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<bean id="datasource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:/comp/env/jdbc/for9" />
+	</bean>
+	
+	<bean id="associadoDao" class="br.com.diastecnologia.for9.dao.AssociadoDao">
+		<property name="dBConnection" ref="datasource"/>
+	</bean>
+	
+	<bean id="contatoDao" class="br.com.diastecnologia.for9.dao.ContatoDao">
+		<property name="dBConnection" ref="datasource"/>
+	</bean>
+	
+	<bean id="imagemDao" class="br.com.diastecnologia.for9.dao.ImagemDao">
+		<property name="dBConnection" ref="datasource"/>
+	</bean>
+	
+	<bean id="loginDao" class="br.com.diastecnologia.for9.dao.LoginDao">
+		<property name="dBConnection" ref="datasource"/>
+	</bean>
+	
+	<bean id="agendaDao" class="br.com.diastecnologia.for9.dao.AgendaDao">
+		<property name="dBConnection" ref="datasource"/>
+	</bean>
+	
+	<bean id="business" class="br.com.diastecnologia.for9.business.For9Business">
+		<constructor-arg ref="associadoDao"/>
+		<constructor-arg ref="contatoDao"/>
+		<constructor-arg ref="imagemDao"/>
+		<constructor-arg ref="loginDao"/>
+		<constructor-arg ref="agendaDao"/>
+	</bean>
+	
+	<context:component-scan base-package="br.com.diastecnologia.for9" />
+
+</beans>
