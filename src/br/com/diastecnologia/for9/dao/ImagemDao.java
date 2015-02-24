@@ -43,7 +43,7 @@ public class ImagemDao extends JdbcDaoSupport{
 	}
 	
 	public List<ImagemBean> getAssociadoImagens(Integer associadoId ){
-		final String SQL = "select * from imagem I join AssociadoImagem AI on I.ImagemId = AI.ImagemId where AI.AssociadoId = ?";
+		final String SQL = "select * from imagem I join associadoimagem AI on I.ImagemId = AI.ImagemId where AI.AssociadoId = ?";
 		return getJdbcTemplate().query(SQL, imagemMapper, associadoId);
 	}
 	
@@ -53,7 +53,7 @@ public class ImagemDao extends JdbcDaoSupport{
 	}
 	
 	public void deleteAssociadoImagem(Integer imagemId, Integer associadoId ){
-		final String SQL = "delete from AssociadoImagem where AssociadoId = ? and  ImagemId = ?";
+		final String SQL = "delete from associadoimagem where AssociadoId = ? and  ImagemId = ?";
 		getJdbcTemplate().update(SQL, associadoId, imagemId);
 	}
 	

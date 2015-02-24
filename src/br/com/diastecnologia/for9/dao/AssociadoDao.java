@@ -63,7 +63,7 @@ public class AssociadoDao extends JdbcDaoSupport{
 	}
 	
 	public void updateAssociado(AssociadoBean associado){
-		final String SQL = "update associado set Nome = ?, Telefone = ?, Email = ?, PaisId = ?, Site = ? where CategoriaId = ?";
+		final String SQL = "update associado set Nome = ?, Telefone = ?, Email = ?, PaisId = ?, Site = ? where AssociadoId = ?";
 		Integer paisId = null;
 		if( associado.getPais() != null ){
 			paisId = associado.getPais().getId();

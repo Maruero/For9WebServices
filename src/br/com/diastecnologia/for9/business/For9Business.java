@@ -57,7 +57,7 @@ public class For9Business {
 	
 	public CategoriaAssociadoBean getCategoria(Integer categoriaId){
 		CategoriaAssociadoBean categoria = associadoDao.getCategoria(categoriaId);
-		if( categoria.getImagem() != null && categoria.getImagem().getId() > 0 ){
+		if( categoria.getImagem() != null && categoria.getImagem().getId() != null && categoria.getImagem().getId() > 0 ){
 			categoria.setImagem( imagemDao.getImagem(categoria.getImagem().getId() ) );
 		}
 		return categoria;
